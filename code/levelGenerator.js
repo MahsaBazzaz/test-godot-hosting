@@ -52,7 +52,7 @@ Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
             char = rows[row][col]
             x = col
             y = row
-            // console.log(char + " " + x + "/" + this.Width + " , " + y + "/" + this.Height)
+            console.log(char + " " + x + "/" + this.Width + " , " + y + "/" + this.Height)
             
             if (char == "X" && y != this.Height - 1){
                 level.SetBlock(x, y, 8 * 16 + 5);
