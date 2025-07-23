@@ -6,6 +6,9 @@
         <script type="text/javascript" src="./constant.js"></script>
 	</head>
 	<body>
+
+        <p>this is the main page</p>
+        <p> the url is: <span id="theurl">...loading...</span></p>
 		<canvas id="canvas" width="640" height="480">
 			<p>Your browser does not support the canvas element.</p>
 		</canvas>
@@ -59,6 +62,12 @@
 
         <script src="code/music.js"></script>
 
-        <script>$(document).ready(function() { new Enjine.Application().Initialize(new Mario.LoadingState(), THE_WIDTH, THE_HEIGHT) });</script>
+        <script>
+        const url = window.location.href;
+        document.getElementById('theurl').textContent = url
+        
+        $(document).ready(function() { new Enjine.Application().Initialize(new Mario.LoadingState(), THE_WIDTH, THE_HEIGHT) });
+        </script>
+        
 	</body>
 </html>
