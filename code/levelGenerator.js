@@ -18,7 +18,7 @@ Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
     let parts = window.location.pathname.split("/").filter(p=>p);
     let pageId = parts[0] || "1";
     // pageId = "1"
-
+    document.getElementById('thenumber').textContent = pageId
     fetch(`data/${pageId}.txt`)
       .then(response => {
         if (!response.ok) {

@@ -9,6 +9,7 @@
 
         <p>this is the main page</p>
         <p> the url is: <span id="theurl">...loading...</span></p>
+        <p> the number is: <span id="thenumber">...loading...</span></p>
 		<canvas id="canvas" width="640" height="480">
 			<p>Your browser does not support the canvas element.</p>
 		</canvas>
@@ -65,7 +66,7 @@
         <script>
         const url = window.location.href;
         document.getElementById('theurl').textContent = url
-        
+
         $(document).ready(function() { new Enjine.Application().Initialize(new Mario.LoadingState(), THE_WIDTH, THE_HEIGHT) });
         </script>
         
