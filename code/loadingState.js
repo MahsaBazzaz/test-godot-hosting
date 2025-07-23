@@ -3,13 +3,15 @@
 	Code by Rob Kleffner, 2011
 */
 
-Mario.LoadingState = function() {
+Mario.LoadingState = function(text) {
     this.Images = [];
     this.ImagesLoaded = false;
     this.ScreenColor = 0;
     this.ColorDirection = 1;
     this.ImageIndex = 0;
     this.SoundIndex = 0;
+    this.Text = text
+    console.log("I am loading, this is what I've got: " + text)
 };
 
 Mario.LoadingState.prototype = new Enjine.GameState();
@@ -143,8 +145,8 @@ Mario.LoadingState.prototype.Draw = function(context) {
 //     }
 // };
 
-Mario.LoadingState.prototype.Update     = function() {};
+// Mario.LoadingState.prototype.Update     = function() {};
 Mario.LoadingState.prototype.CheckForChange = function(context) {
     context.ChangeState(new Mario.TitleState());
-    context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
+    context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground, this.Text));
 };

@@ -3,9 +3,12 @@
 	Code by Rob Kleffner, 2011
 */
 
-Mario.LevelState = function(difficulty, type) {
+Mario.LevelState = function(difficulty, type, text) {
     this.LevelDifficulty = difficulty;
     this.LevelType = type;
+    this.Text = text
+    console.log("I am state, this is what I've got: " + text)
+    
     this.Level = null;
     this.Layer = null;
     this.BgLayer = [];
@@ -35,7 +38,7 @@ Mario.LevelState = function(difficulty, type) {
 Mario.LevelState.prototype = new Enjine.GameState();
 
 Mario.LevelState.prototype.Enter = function() {
-    var levelGenerator = new Mario.LevelGenerator(THE_WIDTH, 15), i = 0, scrollSpeed = 0, w = 0, h = 0, bgLevelGenerator = null;
+    var levelGenerator = new Mario.LevelGenerator(THE_WIDTH, 15, this.Text), i = 0, scrollSpeed = 0, w = 0, h = 0, bgLevelGenerator = null;
     this.Level = levelGenerator.CreateLevel(this.LevelType, this.LevelDifficulty);
 
     //play music here
@@ -321,8 +324,8 @@ Mario.LevelState.prototype.Draw = function(context) {
 			this.GotoMapState = true;
         }
 
-        this.RenderBlackout(context, ((Mario.MarioCharacter.XDeathPos - this.Camera.X) | 0),
-         ((Mario.MarioCharacter.YDeathPos - this.Camera.Y) | 0), (THE_WIDTH - t) | 0);
+        // this.RenderBlackout(context, ((Mario.MarioCharacter.XDeathPos - this.Camera.X) | 0),
+        //  ((Mario.MarioCharacter.YDeathPos - this.Camera.Y) | 0), (THE_WIDTH - t) | 0);
     }
 
     if (Mario.MarioCharacter.DeathTime > 0) {
@@ -465,9 +468,9 @@ Mario.LevelState.prototype.BumpInto = function(x, y) {
 Mario.LevelState.prototype.CheckForChange = function(context) {
 	if (this.GotoLoseState) {
 		console.log("you lost")
-        context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
+        context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground, this.Text));
 	}
 	if (this.GotoMapState) {
-        context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
+        context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground, this.Text));
 	}
 };

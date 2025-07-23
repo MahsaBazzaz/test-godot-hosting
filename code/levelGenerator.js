@@ -3,56 +3,34 @@
 	Code by Rob Kleffner, 2011
 */
 
-Mario.LevelGenerator = function(width, height) {
+Mario.LevelGenerator = function(width, height, text) {
     this.Width = width;
     this.Height = height;
     this.Odds = [];
     this.TotalOdds = 0;
     this.Difficulty = 0;
     this.Type = 0;
+    console.log("I am generator, this is what I've got: " + text)
+    this.Text = text;
 };
 
 // Monkey-patch CreateLevel to always return the same layout:
-Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
+Mario.LevelGenerator.prototype.CreateLevel = function() {
     // 1) Create empty level
     var level = new Mario.Level(this.Width, this.Height);
+    const rows = this.Text.split('\n'); // Split by lines
 
-    
-    let text = ""
-    let hash = window.location.hash.slice(1)
-    let parts = hash.split("/").filter(p=>p);
-    let pageId = parts[0] || "1";
-    // pageId = "1"
-    document.getElementById('thenumber').textContent = pageId
-    fetch(`data/${pageId}.txt`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.text();
-      })
-      .then(data => {
-        text = data
-        console.log(text)
-      })
-      .catch(error => {
-        console.log('Error loading text: ' + error)
-      });
+    // for (var x = 0; x < this.Width; x++) {
+    //     level.SetBlock(x, this.Height - 1, 8 * 16 + 5);   
+    // }
 
-    
-    
-    const rows = text.split('\n'); // Split by lines
-
-    for (var x = 0; x < this.Width; x++) {
-        level.SetBlock(x, this.Height - 1, 8 * 16 + 5);   
-    }
-
+    console.log(rows)
     for (let row = 0; row < rows.length; row++) {
         for (let col = 0; col < rows[row].length; col++) {
             char = rows[row][col]
             x = col
             y = row
-            console.log(char + " " + x + "/" + this.Width + " , " + y + "/" + this.Height)
+            // console.log(char + " " + x + "/" + this.Width + " , " + y + "/" + this.Height)
             
             if (char == "X" && y != this.Height - 1){
                 level.SetBlock(x, y, 8 * 16 + 5);

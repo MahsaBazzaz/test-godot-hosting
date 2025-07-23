@@ -53,8 +53,8 @@ Mario.LoseState.prototype.Draw = function(context) {
     this.drawManager.Draw(context, this.camera);
 };
 
-Mario.LoseState.prototype.CheckForChange = function(context) {
-    if (this.wasKeyDown && !Enjine.KeyboardInput.IsKeyDown(Enjine.Keys.S)) {
-        context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
-    }
-};
+// Mario.LoseState.prototype.CheckForChange = function(context) {
+//     if (this.wasKeyDown && !Enjine.KeyboardInput.IsKeyDown(Enjine.Keys.S)) {
+//         context.ChangeState(new Mario.LevelState(1, Mario.LevelType.Overground));
+//     }
+// };
