@@ -65,13 +65,13 @@
 
         <script>
         const url = window.location.href;
-        document.getElementById('theurl').textContent = url
+        // document.getElementById('theurl').textContent = url
 
         let hash = window.location.hash.slice(1)
         let parts = hash.split("/").filter(p=>p);
         let pageId = parts[0] || "1";
 
-        document.getElementById('thenumber').textContent = pageId
+        // document.getElementById('thenumber').textContent = pageId
 
         fetch(`data/${pageId}.txt`)
         .then(response => {
