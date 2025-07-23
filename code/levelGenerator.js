@@ -44,7 +44,7 @@ Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
     const rows = text.split('\n'); // Split by lines
 
     for (var x = 0; x < this.Width; x++) {
-        level.SetBlock(x, this.Height - 1, 9 * 16 + 5);   
+        level.SetBlock(x, this.Height - 1, 8 * 16 + 5);   
     }
 
     for (let row = 0; row < rows.length; row++) {
