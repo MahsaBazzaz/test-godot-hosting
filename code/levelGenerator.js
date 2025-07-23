@@ -15,7 +15,8 @@ Mario.LevelGenerator = function(width, height) {
 // Monkey-patch CreateLevel to always return the same layout:
 Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
     text = ""
-    let parts = window.location.pathname.split("/").filter(p=>p);
+    let hash = window.location.hash.splice(1)
+    let parts = hash.split("/").filter(p=>p);
     let pageId = parts[0] || "1";
     // pageId = "1"
     document.getElementById('thenumber').textContent = pageId
