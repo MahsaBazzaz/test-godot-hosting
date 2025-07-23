@@ -14,6 +14,10 @@ Mario.LevelGenerator = function(width, height) {
 
 // Monkey-patch CreateLevel to always return the same layout:
 Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
+    // 1) Create empty level
+    var level = new Mario.Level(this.Width, this.Height);
+
+    
     let text = ""
     let hash = window.location.hash.slice(1)
     let parts = hash.split("/").filter(p=>p);
@@ -35,8 +39,7 @@ Mario.LevelGenerator.prototype.CreateLevel = function(type, difficulty) {
         console.log('Error loading text: ' + error)
       });
 
-    // 1) Create empty level
-    var level = new Mario.Level(this.Width, this.Height);
+    
     
     const rows = text.split('\n'); // Split by lines
 
