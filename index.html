@@ -2,29 +2,23 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Hash Router with Section</title>
-  <style>
-    section { padding: 50px; border: 1px solid #ccc; margin: 20px; }
-  </style>
+  <title>Survey</title>
 </head>
 <body>
-  <nav>
-    <a href="#smb/smbId">Home</a>
-    <a href="#soko/sokoId">About</a>
-  </nav>
 
   <div id="app">Loading...</div>
 
   <script>
     const routes = {
-      smb: 'sokoban.html',
+      smb: 'mario.html',
       soko: 'sokoban.html'
     };
 
     async function loadRoute() {
-      const hash = location.hash.slice(1); // remove the #
+      const hash = location.hash.slice(1); 
       const [page, section] = hash.split('/');
-
+      console.log(page)
+      console.log(section)
       const file = routes[page];
       if (!file) {
         document.getElementById('app').innerHTML = '<h2>404 Not Found</h2>';
