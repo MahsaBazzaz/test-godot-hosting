@@ -6,8 +6,6 @@
         <script type="text/javascript" src="./constant.js"></script>
 	</head>
 	<body>
-
-        <p>this is the main page</p>
         <!-- <p> the url is: <span id="theurl">...loading...</span></p> -->
         <!-- <p> the number is: <span id="thenumber">...loading...</span></p> -->
 		<canvas id="canvas" width="640" height="480">
@@ -67,17 +65,13 @@
         const url = window.location.href;
         // document.getElementById('theurl').textContent = url
 
-        const hash = window.location.hash.slice(1); // remove the #
-        const [page, maybeLevel] = hash.split('/');
-
-        const levelFromHash = parseInt(maybeLevel, 10);
-        const pageId = isNaN(levelFromHash) ? 1 : levelFromHash;
-
-        console.log({ page, pageId });
+        const hash = window.location.hash
+        const levelFromHash = parseInt(hash.replace('#', ''), 10)
+        const pageId = isNaN(levelFromHash) ? 1 : levelFromHash
 
         // document.getElementById('thenumber').textContent = pageId
 
-        fetch(`data/smb/${pageId}.txt`)
+        fetch(`data/${pageId}.txt`)
         .then(response => {
             if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);

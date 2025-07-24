@@ -5,10 +5,10 @@ html {
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #222;
+  background: #ffffff;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   height: 100vh;
   line-height: 1.2;
 }
