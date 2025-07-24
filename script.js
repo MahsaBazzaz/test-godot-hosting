@@ -4,9 +4,13 @@ import Sokoban from './Sokoban.js'
 // init
 
 // Get level number from URL hash, default to 1
-const hash = window.location.hash
-const levelFromHash = parseInt(hash.replace('#', ''), 10)
-const pageId = isNaN(levelFromHash) ? 1 : levelFromHash
+const hash = window.location.hash.slice(1); // remove the #
+const [page, maybeLevel] = hash.split('/');
+
+const levelFromHash = parseInt(maybeLevel, 10);
+const pageId = isNaN(levelFromHash) ? 1 : levelFromHash;
+
+console.log({ page, pageId });
 
 let sokoban
 

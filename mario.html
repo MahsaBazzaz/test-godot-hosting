@@ -67,9 +67,13 @@
         const url = window.location.href;
         // document.getElementById('theurl').textContent = url
 
-        let hash = window.location.hash.slice(1)
-        let parts = hash.split("/").filter(p=>p);
-        let pageId = parts[0] || "1";
+        const hash = window.location.hash.slice(1); // remove the #
+        const [page, maybeLevel] = hash.split('/');
+
+        const levelFromHash = parseInt(maybeLevel, 10);
+        const pageId = isNaN(levelFromHash) ? 1 : levelFromHash;
+
+        console.log({ page, pageId });
 
         // document.getElementById('thenumber').textContent = pageId
 

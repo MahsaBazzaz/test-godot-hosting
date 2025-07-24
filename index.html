@@ -1,37 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>User Study</title>
+  <meta charset="UTF-8">
+  <title>Hash Router with Section</title>
+  <style>
+    section { padding: 50px; border: 1px solid #ccc; margin: 20px; }
+  </style>
 </head>
 <body>
   <nav>
-    <a href="/smb">SMB</a>
-    <a href="/soko">SOKO</a>
+    <a href="#smb/smbId">Home</a>
+    <a href="#soko/sokoId">About</a>
   </nav>
 
   <div id="app">Loading...</div>
 
   <script>
     const routes = {
-      soko: 'mario.html',
       smb: 'sokoban.html',
+      soko: 'sokoban.html'
     };
 
     async function loadRoute() {
-      const hash = location.hash.slice(1) || 'smb';
-      const route = routes[hash];
+      const hash = location.hash.slice(1); // remove the #
+      const [page, section] = hash.split('/');
 
-      if (route) {
-        try {
-          const response = await fetch(route);
-          const html = await response.text();
-          document.getElementById('app').innerHTML = html;
-        } catch (err) {
-          document.getElementById('app').innerHTML = '<h2>Error loading page.</h2>';
+      const file = routes[page];
+      if (!file) {
+        document.getElementById('app').innerHTML = '<h2>404 Not Found</h2>';
+        return;
+      }
+
+      try {
+        const res = await fetch(file);
+        const html = await res.text();
+        document.getElementById('app').innerHTML = html;
+
+        // Wait a bit and then scroll to the section
+        if (section) {
+          setTimeout(() => {
+            const el = document.getElementById(section);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
         }
-      } else {
-        document.getElementById('app').innerHTML = '<h2>404 - Page Not Found</h2>';
+      } catch (err) {
+        document.getElementById('app').innerHTML = '<h2>Error loading content.</h2>';
       }
     }
 
